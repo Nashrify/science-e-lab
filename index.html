@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Study Hub — Form 3 & 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg:           #f0f6ff;
+      --surface:      #ffffff;
+      --surface2:     #e8f1fc;
+      --border:       #ccdff7;
+      --border-soft:  #ddeeff;
+
+      --navy:         #1a3a6e;
+      --navy-mid:     #2454a4;
+      --blue:         #3b82f6;
+      --blue-light:   #bfdbfe;
+      --blue-pale:    #eff6ff;
+      --sky:          #0ea5e9;
+      --sky-pale:     #f0f9ff;
+
+      --green:        #059669;
+      --green-pale:   #ecfdf5;
+      --green-light:  #a7f3d0;
+
+      --text:         #0f2144;
+      --text-mid:     #2d4a72;
+      --muted:        #6b8db5;
+      --muted-light:  #9dbad9;
+
+      --shadow-sm:    0 1px 4px rgba(26,58,110,0.07), 0 2px 12px rgba(26,58,110,0.05);
+      --shadow-md:    0 4px 16px rgba(26,58,110,0.1), 0 1px 4px rgba(26,58,110,0.06);
+      --shadow-lg:    0 8px 32px rgba(26,58,110,0.13), 0 2px 8px rgba(26,58,110,0.07);
+
+      --radius-sm:    8px;
+      --radius-md:    14px;
+      --radius-lg:    20px;
+      --radius-xl:    28px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(59,130,246,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 85% 85%, rgba(14,165,233,0.05) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ═══════════════ NAV ═══════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--navy-mid), var(--sky));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 2px 10px rgba(36,84,164,0.25);
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .logo-text small {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.67rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .nav-link {
+      padding: 0.42rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: color .18s, background .18s;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .nav-link:hover  { color: var(--navy); background: var(--blue-pale); }
+    .nav-link.active { color: var(--navy-mid); background: var(--blue-pale); font-weight: 600; }
+
+    .nav-dropdown { position: relative; }
+    .dropdown-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color .18s, background .18s;
+      white-space: nowrap;
+    }
+    .dropdown-btn:hover { color: var(--navy); background: var(--blue-pale); }
+    .dropdown-btn .chev { font-size: 0.6rem; color: var(--muted); transition: transform .22s; }
+    .nav-dropdown:hover .chev { transform: rotate(180deg); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px) scale(0.97);
+      min-width: 175px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s, transform .2s;
+      box-shadow: var(--shadow-lg);
+    }
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+      pointer-events: all;
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .dropdown-item:hover { background: var(--blue-pale); color: var(--navy); }
+    .di-icon {
+      width: 26px; height: 26px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; flex-shrink: 0;
+    }
+    .di-green { background: var(--green-pale); color: var(--green); }
+    .di-blue  { background: var(--blue-pale);  color: var(--blue);  }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px; height: 40px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      transition: background .15s;
+    }
+    .hamburger:hover { background: var(--blue-pale); }
+    .hamburger span {
+      display: block; height: 2px;
+      background: var(--navy-mid);
+      border-radius: 2px;
+      transition: all .28s;
+    }
+    .hamburger span:nth-child(1) { width: 20px; }
+    .hamburger span:nth-child(2) { width: 15px; }
+    .hamburger span:nth-child(3) { width: 20px; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 20px; }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 20px; }
+
+    /* mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 62px; left: 0; right: 0;
+      background: var(--surface);
+      border-bottom: 1.5px solid var(--border);
+      padding: 0.75rem 1rem 1.25rem;
+      box-shadow: var(--shadow-md);
+      z-index: 190;
+      flex-direction: column;
+      gap: 0.15rem;
+      max-height: calc(100vh - 62px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.open { display: flex; animation: slideDown .22s ease; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mob-label {
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 0.75rem 0.6rem 0.25rem;
+    }
+    .mob-link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.72rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      min-height: 44px; /* touch target */
+    }
+    .mob-link:hover, .mob-link.active { background: var(--blue-pale); color: var(--navy); }
+    .mob-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; flex-shrink: 0;
+    }
+
+    /* ═══════════════ SECTIONS ═══════════════ */
+    .content-section { display: none; position: relative; z-index: 1; }
+    .content-section.active { display: block; animation: fadeUp .32s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ═══════════════ HERO ═══════════════ */
+    .hero { text-align: center; padding: 2.5rem 0 2rem; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.38rem 1rem;
+      background: linear-gradient(90deg, var(--blue-pale), var(--sky-pale));
+      border: 1.5px solid var(--blue-light);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 1.4rem;
+    }
+    .hero-badge i { color: var(--sky); }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--navy-mid), var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      max-width: 520px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      max-width: 440px;
+      margin: 0 auto 2.25rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-wrap:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1), var(--shadow-sm);
+    }
+    .search-wrap i { padding: 0 0.85rem 0 1rem; color: var(--muted); font-size: 0.9rem; }
+    .search-wrap input {
+      flex: 1; border: none; outline: none; background: none;
+      padding: 0.82rem 0.5rem 0.82rem 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .search-wrap input::placeholder { color: var(--muted-light); }
+
+    .stats-strip {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.42rem 0.85rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      white-space: nowrap;
+    }
+    .stat-pill strong { font-weight: 700; color: var(--navy-mid); }
+    .stat-pill i { color: var(--sky); font-size: 0.72rem; }
+
+    /* subject grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .subject-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.4rem;
+      cursor: pointer;
+      transition: border-color .22s, transform .22s, box-shadow .22s;
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+      min-height: 44px;
+    }
+    .subject-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      border-radius: 0 var(--radius-lg) 0 80px;
+      opacity: 0.55;
+      transition: opacity .22s;
+    }
+    .subject-card.bio::after  { background: var(--green-pale); }
+    .subject-card.chem::after { background: var(--blue-pale); }
+    .subject-card:hover { transform: translateY(-4px); }
+    .subject-card.bio:hover  { border-color: var(--green-light); box-shadow: 0 8px 28px rgba(5,150,105,0.1); }
+    .subject-card.chem:hover { border-color: var(--blue-light);  box-shadow: 0 8px 28px rgba(59,130,246,0.1); }
+    .subject-card:hover::after { opacity: 1; }
+
+    .sc-icon {
+      width: 46px; height: 46px;
+      border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .bio  .sc-icon { background: var(--green-pale); color: var(--green); }
+    .chem .sc-icon { background: var(--blue-pale);  color: var(--blue);  }
+
+    .sc-form {
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      margin-bottom: 0.3rem;
+    }
+    .bio  .sc-form { color: var(--green); }
+    .chem .sc-form { color: var(--blue);  }
+
+    .subject-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.45rem;
+    }
+    .subject-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+    .sc-arrow {
+      position: absolute; bottom: 1.4rem; right: 1.4rem;
+      width: 30px; height: 30px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      opacity: 0;
+      transform: translate(4px, 4px);
+      transition: opacity .2s, transform .2s;
+    }
+    .bio  .sc-arrow { background: var(--green-pale); color: var(--green); }
+    .chem .sc-arrow { background: var(--blue-pale);  color: var(--blue);  }
+    .subject-card:hover .sc-arrow { opacity: 1; transform: translate(0, 0); }
+
+    /* ═══════════════ PAGE HEADERS ═══════════════ */
+    .page-header { margin-bottom: 1.75rem; }
+    .breadcrumb {
+      display: flex; align-items: center;
+      gap: 0.4rem; font-size: 0.78rem;
+      color: var(--muted); margin-bottom: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .bc-link { cursor: pointer; transition: color .15s; }
+    .bc-link:hover { color: var(--navy-mid); }
+    .bc-sep { font-size: 0.58rem; color: var(--muted-light); }
+
+    .page-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.45rem, 4vw, 2.2rem);
+      font-weight: 800; color: var(--navy);
+      letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .h-bio  { color: var(--green); }
+    .h-chem { color: var(--blue);  }
+    .page-header p { font-size: 0.9rem; color: var(--muted); margin-top: 0.35rem; }
+
+    /* resource grid */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .resource-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .22s, transform .22s, box-shadow .22s;
+    }
+    .resource-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .resource-card.bio:hover  { border-color: var(--green-light); }
+    .resource-card.chem:hover { border-color: var(--blue-light); }
+
+    .rc-visual {
+      height: 130px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative; overflow: hidden;
+    }
+    .bio  .rc-visual { background: linear-gradient(135deg, #ecfdf5, #d1fae5); }
+    .chem .rc-visual { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+    .rc-visual::before, .rc-visual::after {
+      content: ''; position: absolute;
+      border-radius: 999px; border: 1.5px solid; opacity: 0.18;
+    }
+    .bio  .rc-visual::before, .bio  .rc-visual::after  { border-color: var(--green); }
+    .chem .rc-visual::before, .chem .rc-visual::after  { border-color: var(--blue); }
+    .rc-visual::before { width: 90px;  height: 90px;  right: -20px; bottom: -20px; }
+    .rc-visual::after  { width: 130px; height: 130px; right: -40px; bottom: -40px; }
+
+    .rc-body { padding: 1.2rem; }
+    .rc-tag {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 0.65rem;
+    }
+    .bio  .rc-tag { background: var(--green-pale); color: var(--green); }
+    .chem .rc-tag { background: var(--blue-pale);  color: var(--blue);  }
+    .resource-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.4rem;
+    }
+    .resource-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+
+    .btn-dl {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.83rem; font-weight: 600;
+      cursor: pointer; border: none;
+      transition: filter .18s, transform .15s;
+      min-height: 38px;
+    }
+    .btn-dl:hover { filter: brightness(0.9); transform: translateY(-1px); }
+    .btn-dl:active { transform: translateY(0); }
+    .bio  .btn-dl { background: var(--green-pale); color: var(--green); }
+    .chem .btn-dl { background: var(--blue-pale);  color: var(--blue);  }
+
+    /* ═══════════════ ABOUT ═══════════════ */
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .about-main {
+      background: var(--surface);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .about-main h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem; font-weight: 800;
+      color: var(--navy); letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+    }
+    .about-main h2 span { color: var(--sky); }
+    .about-main p { color: var(--muted); font-size: 0.92rem; line-height: 1.75; margin-bottom: 0.9rem; }
+    .about-features { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
+    .about-feat { display: flex; align-items: center; gap: 0.7rem; font-size: 0.88rem; color: var(--text-mid); }
+    .feat-dot {
+      width: 22px; height: 22px; border-radius: 999px;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); font-size: 0.62rem; flex-shrink: 0;
+    }
+    .about-side { display: flex; flex-direction: column; gap: 1rem; }
+    .about-stat-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .stat-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .about-stat-card:nth-child(1) .stat-icon { background: var(--blue-pale); color: var(--blue); }
+    .about-stat-card:nth-child(2) .stat-icon { background: var(--green-pale); color: var(--green); }
+    .about-stat-card:nth-child(3) .stat-icon { background: #fef9c3; color: #a16207; }
+    .asc-info strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+    .asc-info span { font-size: 0.8rem; color: var(--muted); }
+
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1.5px solid var(--border);
+      background: var(--surface);
+      padding: 1.6rem 1.25rem;
+    }
+    .footer-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 0.95rem; color: var(--navy);
+    }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer span { color: var(--navy-mid); font-weight: 600; }
+
+    /* ═══════════════ RESPONSIVE ═══════════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { padding: 1.75rem 0 1.5rem; }
+      .subject-grid { grid-template-columns: 1fr 1fr; }
+      .about-wrap { grid-template-columns: 1fr; }
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .subject-grid { grid-template-columns: 1fr; }
+      .stats-strip  { gap: 0.5rem; }
+      .stat-pill    { font-size: 0.75rem; padding: 0.38rem 0.7rem; }
+      main          { padding: 1.25rem 1rem 3rem; }
+      .about-main   { padding: 1.4rem; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+      .hero-sub     { font-size: 0.93rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-inner">
+
+    <div class="nav-logo nav-link" data-target="home">
+      <div class="logo-mark">🧪</div>
+      <div class="logo-text">
+        ScienceHub
+        <small>Form 3 &amp; 4 Resources</small>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <span class="nav-link active" data-target="home">Home</span>
+
+      <div class="nav-dropdown">
+        <button class="dropdown-btn">Form 3 <i class="fa-solid fa-chevron-down chev"></i></button>
+        <div class="dropdown-menu">
+          <div class="dropdown-item nav-link" data-target="form3-biology">
+            <span class="di-icon di-green"><i class="fa-solid fa-seedling"></i></span> Biology
+          </div>
+          <div class="dropdown-item nav-link" data-target="form3-chemistry">
+            <span class="di-icon di-blue"><i class="fa-solid fa-flask"></i></span> Chemistry
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="dropdown-btn">Form 4 <i class="fa-solid fa-chevron-down chev"></i></button>
+        <div class="dropdown-menu">
+          <div class="dropdown-item nav-link" data-target="form4-biology">
+            <span class="di-icon di-green"><i class="fa-solid fa-dna"></i></span> Biology
+          </div>
+          <div class="dropdown-item nav-link" data-target="form4-chemistry">
+            <span class="di-icon di-blue"><i class="fa-solid fa-vial"></i></span> Chemistry
+          </div>
+        </div>
+      </div>
+
+      <span class="nav-link" data-target="about">About</span>
+    </div>
+
+    <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- mobile drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mob-label">Menu</div>
+    <div class="mob-link nav-link" data-target="home">
+      <span class="mob-icon" style="background:#eff6ff;color:#3b82f6"><i class="fa-solid fa-house"></i></span> Home
+    </div>
+
+    <div class="mob-label">Form 3</div>
+    <div class="mob-link nav-link" data-target="form3-biology">
+      <span class="mob-icon" style="background:#ecfdf5;color:#059669"><i class="fa-solid fa-seedling"></i></span> Biology
+    </div>
+    <div class="mob-link nav-link" data-target="form3-chemistry">
+      <span class="mob-icon" style="background:#eff6ff;color:#3b82f6"><i class="fa-solid fa-flask"></i></span> Chemistry
+    </div>
+
+    <div class="mob-label">Form 4</div>
+    <div class="mob-link nav-link" data-target="form4-biology">
+      <span class="mob-icon" style="background:#ecfdf5;color:#059669"><i class="fa-solid fa-dna"></i></span> Biology
+    </div>
+    <div class="mob-link nav-link" data-target="form4-chemistry">
+      <span class="mob-icon" style="background:#eff6ff;color:#3b82f6"><i class="fa-solid fa-vial"></i></span> Chemistry
+    </div>
+
+    <div class="mob-label">Other</div>
+    <div class="mob-link nav-link" data-target="about">
+      <span class="mob-icon" style="background:#fef9c3;color:#a16207"><i class="fa-solid fa-circle-info"></i></span> About
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="content-section">
+    <div class="hero">
+      <div class="hero-badge">
+        <i class="fa-solid fa-graduation-cap"></i>
+        NECTA Exam Preparation
+      </div>
+      <h1>Your Complete<br><em>Science Study</em> Hub</h1>
+      <p class="hero-sub">Free Biology and Chemistry resources for Form 3 &amp; 4 students — curriculum-aligned notes, revision guides, and past papers for NECTA success.</p>
+
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search subjects or topics…" autocomplete="off">
+      </div>
+
+      <div class="stats-strip">
+        <div class="stat-pill"><i class="fa-solid fa-book-open"></i> <strong>4</strong> Subjects</div>
+        <div class="stat-pill"><i class="fa-solid fa-file-lines"></i> <strong>100+</strong> Topic Notes</div>
+        <div class="stat-pill"><i class="fa-solid fa-unlock"></i> <strong>Always</strong> Free</div>
+        <div class="stat-pill"><i class="fa-solid fa-award"></i> <strong>NECTA</strong> Aligned</div>
+      </div>
+    </div>
+
+    <div class="subject-grid">
+      <div class="subject-card bio nav-link" data-target="form3-biology">
+        <div class="sc-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="sc-form">Form 3</div>
+        <h2>Biology</h2>
+        <p>Cell biology, genetics, ecology and full Form 3 coverage.</p>
+        <div class="sc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+      <div class="subject-card chem nav-link" data-target="form3-chemistry">
+        <div class="sc-icon"><i class="fa-solid fa-flask"></i></div>
+        <div class="sc-form">Form 3</div>
+        <h2>Chemistry</h2>
+        <p>Atomic structure, bonding, equations &amp; reactions.</p>
+        <div class="sc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+      <div class="subject-card bio nav-link" data-target="form4-biology">
+        <div class="sc-icon"><i class="fa-solid fa-dna"></i></div>
+        <div class="sc-form">Form 4</div>
+        <h2>Biology</h2>
+        <p>Reproduction, evolution, and advanced human physiology.</p>
+        <div class="sc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+      <div class="subject-card chem nav-link" data-target="form4-chemistry">
+        <div class="sc-icon"><i class="fa-solid fa-vial"></i></div>
+        <div class="sc-form">Form 4</div>
+        <h2>Chemistry</h2>
+        <p>Organic chemistry, electrochemistry &amp; industrial processes.</p>
+        <div class="sc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM 3 BIOLOGY -->
+  <section id="form3-biology" class="content-section">
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="bc-link nav-link" data-target="home">Home</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Form 3</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Biology</span>
+      </div>
+      <h2><span class="h-bio">Biology</span> — Form 3</h2>
+      <p>Complete notes and resources for all Form 3 Biology topics.</p>
+    </div>
+    <div class="resource-grid">
+      <div class="resource-card bio">
+        <div class="rc-visual">🌿</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-book"></i> Notes</span>
+          <h3>Form 3 Biology Notes</h3>
+          <p>Full curriculum-aligned notes covering every Form 3 Biology topic for NECTA.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card bio">
+        <div class="rc-visual">🔬</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-file-lines"></i> Revision</span>
+          <h3>Revision Summaries</h3>
+          <p>Condensed topic-by-topic summaries for quick and effective exam preparation.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card bio">
+        <div class="rc-visual">📋</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-pencil"></i> Past Papers</span>
+          <h3>Past Exam Papers</h3>
+          <p>NECTA past papers with model answers for focused Form 3 Biology practice.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM 3 CHEMISTRY -->
+  <section id="form3-chemistry" class="content-section">
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="bc-link nav-link" data-target="home">Home</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Form 3</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Chemistry</span>
+      </div>
+      <h2><span class="h-chem">Chemistry</span> — Form 3</h2>
+      <p>Complete notes and resources for all Form 3 Chemistry topics.</p>
+    </div>
+    <div class="resource-grid">
+      <div class="resource-card chem">
+        <div class="rc-visual">⚗️</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-book"></i> Notes</span>
+          <h3>Form 3 Chemistry Notes</h3>
+          <p>Detailed notes on atomic structure, chemical bonding, and reactions.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card chem">
+        <div class="rc-visual">🧪</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-file-lines"></i> Revision</span>
+          <h3>Revision Summaries</h3>
+          <p>Condensed, exam-focused summaries for each Chemistry unit.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card chem">
+        <div class="rc-visual">📝</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-pencil"></i> Past Papers</span>
+          <h3>Past Exam Papers</h3>
+          <p>NECTA past papers with complete model answers for Form 3 Chemistry.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM 4 BIOLOGY -->
+  <section id="form4-biology" class="content-section">
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="bc-link nav-link" data-target="home">Home</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Form 4</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Biology</span>
+      </div>
+      <h2><span class="h-bio">Biology</span> — Form 4</h2>
+      <p>Advanced NECTA revision notes and resources for Form 4 Biology.</p>
+    </div>
+    <div class="resource-grid">
+      <div class="resource-card bio">
+        <div class="rc-visual">🧬</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-book"></i> Notes</span>
+          <h3>Form 4 Biology Notes</h3>
+          <p>In-depth notes on reproduction, evolution, and human physiology for NECTA.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card bio">
+        <div class="rc-visual">🌱</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-file-lines"></i> Revision</span>
+          <h3>Revision Summaries</h3>
+          <p>Quick-reference unit summaries tailored for last-minute NECTA revision.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card bio">
+        <div class="rc-visual">📖</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-pencil"></i> Past Papers</span>
+          <h3>Past Exam Papers</h3>
+          <p>Form 4 Biology NECTA past papers with structured model answers.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM 4 CHEMISTRY -->
+  <section id="form4-chemistry" class="content-section">
+    <div class="page-header">
+      <div class="breadcrumb">
+        <span class="bc-link nav-link" data-target="home">Home</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Form 4</span>
+        <i class="fa-solid fa-chevron-right bc-sep"></i><span>Chemistry</span>
+      </div>
+      <h2><span class="h-chem">Chemistry</span> — Form 4</h2>
+      <p>Advanced NECTA revision notes and resources for Form 4 Chemistry.</p>
+    </div>
+    <div class="resource-grid">
+      <div class="resource-card chem">
+        <div class="rc-visual">🔭</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-book"></i> Notes</span>
+          <h3>Form 4 Chemistry Notes</h3>
+          <p>Organic chemistry, electrochemistry &amp; industrial processes — fully covered.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card chem">
+        <div class="rc-visual">💡</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-file-lines"></i> Revision</span>
+          <h3>Revision Summaries</h3>
+          <p>Per-unit focused summaries designed for NECTA exam readiness.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="resource-card chem">
+        <div class="rc-visual">📋</div>
+        <div class="rc-body">
+          <span class="rc-tag"><i class="fa-solid fa-pencil"></i> Past Papers</span>
+          <h3>Past Exam Papers</h3>
+          <p>Form 4 Chemistry NECTA past papers with complete model answers.</p>
+          <button class="btn-dl"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="content-section">
+    <div class="page-header">
+      <h2>About <span style="color:var(--sky)">ScienceHub</span></h2>
+      <p>Free NECTA-aligned resources for Tanzanian secondary school students.</p>
+    </div>
+    <div class="about-wrap">
+      <div class="about-main">
+        <h2>Built for <span>Students</span></h2>
+        <p>Science Study Hub is a free learning platform designed specifically for Tanzanian secondary school students preparing for NECTA examinations. Our mission is to make quality science education accessible to every student, wherever they are.</p>
+        <p>All materials are aligned with the Tanzania Institute of Education (TIE) curriculum and regularly reviewed to reflect current examination patterns.</p>
+        <div class="about-features">
+          <div class="about-feat"><span class="feat-dot"><i class="fa-solid fa-check"></i></span> 100% free — no login required</div>
+          <div class="about-feat"><span class="feat-dot"><i class="fa-solid fa-check"></i></span> Form 3 &amp; 4 Biology and Chemistry</div>
+          <div class="about-feat"><span class="feat-dot"><i class="fa-solid fa-check"></i></span> NECTA past papers with model answers</div>
+          <div class="about-feat"><span class="feat-dot"><i class="fa-solid fa-check"></i></span> TIE curriculum-aligned content</div>
+          <div class="about-feat"><span class="feat-dot"><i class="fa-solid fa-check"></i></span> Downloadable PDFs for offline study</div>
+        </div>
+      </div>
+      <div class="about-side">
+        <div class="about-stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div class="asc-info">
+            <strong>4 Subjects</strong>
+            <span>Biology &amp; Chemistry, Forms 3–4</span>
+          </div>
+        </div>
+        <div class="about-stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-file-lines"></i></div>
+          <div class="asc-info">
+            <strong>100+ Notes</strong>
+            <span>Comprehensive topic coverage</span>
+          </div>
+        </div>
+        <div class="about-stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="asc-info">
+            <strong>NECTA Ready</strong>
+            <span>Aligned to TIE curriculum standards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo-mark" style="width:28px;height:28px;font-size:.8rem;border-radius:8px">🧪</div>
+      ScienceHub
+    </div>
+    <p>© 2026 <span>Science Study Hub</span> &nbsp;·&nbsp; Developed by <span>Mr. Alchemy</span></p>
+  </div>
+</footer>
+
+<script>
+  const navLinks    = document.querySelectorAll('.nav-link');
+  const sections    = document.querySelectorAll('.content-section');
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobileMenu');
+  const searchInput = document.getElementById('searchInput');
+
+  function showSection(id) {
+    sections.forEach(s => s.classList.remove('active'));
+    const t = document.getElementById(id);
+    if (t) { t.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-target') === id));
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('data-target');
+      if (target) showSection(target);
+    });
+  });
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  hamburger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hamburger.click(); }
+  });
+
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  const searchMap = {
+    'form3-biology':   ['biology','bio','form 3','form3','cell','genetics','ecology','seedling'],
+    'form3-chemistry': ['chemistry','chem','form 3','form3','atom','bond','reaction','flask'],
+    'form4-biology':   ['biology','bio','form 4','form4','evolution','reproduction','physiology','dna'],
+    'form4-chemistry': ['chemistry','chem','form 4','form4','organic','electro','industrial','vial'],
+  };
+
+  searchInput.addEventListener('input', function () {
+    const q = this.value.toLowerCase().trim();
+    if (!q) return;
+    for (const [key, terms] of Object.entries(searchMap)) {
+      if (terms.some(t => q.includes(t) || t.includes(q))) { showSection(key); return; }
+    }
+  });
+
+  showSection('home');
+</script>
+</body>
+</html>
